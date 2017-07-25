@@ -1,4 +1,4 @@
-package com.trinative;
+package fm.kenneth.triathlons;
 
 import android.app.Application;
 

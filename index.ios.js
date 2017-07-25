@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import Search from './app/components/Search'
 
-export default class TriNative extends Component {
+export default class Triathlons extends Component {
   render() {
     return (
       <Search />
@@ -10,4 +10,4 @@ export default class TriNative extends Component {
   }
 }
 
-AppRegistry.registerComponent('TriNative', () => TriNative);
+AppRegistry.registerComponent('Triathlons', () => Triathlons);
