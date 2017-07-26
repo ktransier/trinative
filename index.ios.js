@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import Search from './app/components/Search'
+import SearchView from './app/views/SearchView';
 
 export default class Triathlons extends Component {
   render() {
-    return (
-      <Search />
-    );
+    return (<SearchView />);
   }
 }
 
