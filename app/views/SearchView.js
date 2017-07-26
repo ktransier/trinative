@@ -40,8 +40,8 @@ export default class SearchView extends Component {
       region: {
         latitude: coordinates[0],
         longitude: coordinates[1],
-        latitudeDelta: 0.122,
-        longitudeDelta: 1
+        latitudeDelta: (this.state.searchRadius * 2) / 65,
+        longitudeDelta: (this.state.searchRadius* 2) / 65
       }
     })
   }
@@ -80,6 +80,9 @@ export default class SearchView extends Component {
           <SearchButton handler={this.fetchTriathlons}/>
         </View>
         <View style={{flex: 2}}>
+          {this.state.triathlons.length == 0 &&
+            <Text style={searchStyles.emptyState}>No Results Found</Text>
+          }
           <TriathlonList triathlons={this.state.triathlons}/>
         </View>
       </View>
@@ -88,6 +91,10 @@ export default class SearchView extends Component {
 }
 
 searchStyles = StyleSheet.create({
+  emptyState: {
+    marginTop: 30,
+    textAlign: 'center'
+  },
   label: {
     paddingBottom: 4,
     fontSize: 12,

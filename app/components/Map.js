@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   View
 } from 'react-native';
 import MapView from 'react-native-maps';
@@ -24,12 +24,12 @@ export default class Map extends Component {
             key={marker.id}
           >
           <MapView.Callout>
-            <TouchableHighlight onPress={() => (SafariView.show({url: marker.race_url}))}>
+            <TouchableOpacity onPress={() => (SafariView.show({url: marker.race_url}))}>
               <View>
                 <Text>{marker.name}</Text>
                 <Text>{Moment(marker.date).format('ddd MMM D, YYYY')}</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </MapView.Callout>
           </MapView.Marker>
         ))}
