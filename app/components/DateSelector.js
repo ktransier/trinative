@@ -5,13 +5,25 @@ import DatePicker from 'react-native-datepicker';
 export default class DateSelector extends Component {
   customStyles() {
     return({
+      dateTouch: {
+      },
+      dateTouchBody: {
+        flex: 1,
+        flexDirection: 'row',
+      },
       dateInput: {
         borderWidth: 0,
+        backgroundColor: '#354F6A',
+        borderRadius: 5,
+        height: 30,
+        marginTop: 30,
+        marginRight: 10,
         alignItems: 'flex-start',
+        paddingHorizontal: 10
       },
       dateText: {
         fontSize: 16,
-        color: '#444'
+        color: 'white'
       }
     })
   }
@@ -19,7 +31,6 @@ export default class DateSelector extends Component {
   render() {
     return (
       <View style={dateSelectorStyles.container}>
-        <Text style={searchStyles.label}>START DATE</Text>
         <DatePicker
           date={this.props.date}
           mode='date'
@@ -27,6 +38,7 @@ export default class DateSelector extends Component {
           confirmBtnText='Select'
           cancelBtnText='Cancel'
           showIcon={false}
+          ref={(picker) => { this.datePicker = picker; }}
           customStyles={this.customStyles()}
           onDateChange={(date) => {this.props.dateSelected(date)}}
         />

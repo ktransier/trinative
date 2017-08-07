@@ -4,8 +4,7 @@ import Map from '../components/Map';
 import SearchButton from '../components/SearchButton';
 import DateSelector from '../components/DateSelector';
 import TriathlonList from '../components/TriathlonList';
-import SearchTermInput from '../components/SearchTermInput';
-import SearchRadiusInput from '../components/SearchRadiusInput';
+import SearchTextInput from '../components/SearchTextInput';
 
 export default class SearchView extends Component {
   constructor() {
@@ -47,11 +46,15 @@ export default class SearchView extends Component {
   }
 
   startDateSelected = (date) => {
-    this.setState({startDate: date})
+    this.setState({startDate: date}, () => {
+      this.fetchTriathlons();
+    })
   }
 
   endDateSelected = (date) => {
-    this.setState({endDate: date})
+    this.setState({endDate: date}, () => {
+      this.fetchTriathlons();
+    })
   }
 
   searchRadiusSelected = (searchRadius) => {
@@ -65,21 +68,31 @@ export default class SearchView extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <View style={{flex: 3}}>
-          <Map markers={this.state.triathlons} region={this.state.region}/>
-        </View>
-        <View style={{flex: 2}}>
+
+        <View style={searchStyles.searchBar}>
           <View style={searchStyles.searchFields}>
-            <SearchTermInput searchTerm={this.state.searchTerm} handler={this.searchTermSelected}/>
-            <SearchRadiusInput searchRadius={this.state.searchRadius} handler={this.searchRadiusSelected}/>
+            <SearchTextInput
+              placeholderText={'Enter location'}
+              value={this.state.searchTerm}
+              onChangeHandler={this.searchTermSelected}
+              onSubmitHandler={this.fetchTriathlons}/>
+            <SearchTextInput
+              placeholderText={'Enter radius (MI)'}
+              value={this.state.searchRadius}
+              onChangeHandler={this.searchRadiusSelected}
+              onSubmitHandler={this.fetchTriathlons}/>
           </View>
           <View style={searchStyles.dateRow}>
-            <DateSelector date={this.state.startDate} dateSelected={this.startDateSelected}/>
-            <DateSelector date={this.state.endDate} dateSelected={this.endDateSelected}/>
+            <DateSelector date={this.state.startDate} dateSelected={this.startDateSelected} label={'START DATE'}/>
+            <DateSelector date={this.state.endDate} dateSelected={this.endDateSelected} label={'END DATE'}/>
           </View>
-          <SearchButton handler={this.fetchTriathlons}/>
         </View>
-        <View style={{flex: 2}}>
+
+        <View style={{flex: 1}}>
+          <Map markers={this.state.triathlons} region={this.state.region}/>
+        </View>
+
+        <View style={{flex: 1}}>
           {this.state.triathlons.length == 0 &&
             <Text style={searchStyles.emptyState}>No Results Found</Text>
           }
@@ -91,6 +104,10 @@ export default class SearchView extends Component {
 }
 
 searchStyles = StyleSheet.create({
+  searchBar: {
+    height: 110,
+    backgroundColor: "#2A4057"
+  },
   emptyState: {
     marginTop: 30,
     textAlign: 'center'

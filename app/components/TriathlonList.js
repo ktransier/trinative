@@ -3,7 +3,7 @@ import {
    FlatList,
    StyleSheet,
    Text,
-   TouchableHighlight,
+   TouchableOpacity,
    View
 } from 'react-native';
 import SafariView from 'react-native-safari-view';
@@ -12,12 +12,12 @@ import Moment from 'moment';
 export default class SearchButton extends Component {
   renderItem({item}) {
     return(
-      <TouchableHighlight onPress={() => (SafariView.show({url: item.race_url}))} style={triathlonListStyles.listItemContainer}>
+      <TouchableOpacity onPress={() => (SafariView.show({url: item.race_url}))} style={triathlonListStyles.listItemContainer}>
         <View>
-          <Text>{item.name}</Text>
+          <Text style={triathlonListStyles.title}>{item.name}</Text>
           <Text>{Moment(item.date).format('ddd MMM D, YYYY')}</Text>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 
@@ -35,7 +35,13 @@ export default class SearchButton extends Component {
 
 triathlonListStyles = StyleSheet.create({
   listItemContainer: {
-    paddingVertical: 10,
+    paddingVertical: 15,
     paddingHorizontal: 15
+  },
+  title: {
+    fontSize: 17,
+    fontWeight: '500'
+  },
+  date: {
   }
 });
