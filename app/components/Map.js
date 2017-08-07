@@ -22,7 +22,7 @@ export default class Map extends Component {
             coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
             title={marker.name}
             key={marker.id}
-            pinColor='#2980b9'
+            image={require('../assets/map-marker.png')}
           >
           <MapView.Callout>
             <TouchableOpacity onPress={() => (SafariView.show({url: marker.race_url}))}>

@@ -71,20 +71,28 @@ export default class SearchView extends Component {
 
         <View style={searchStyles.searchBar}>
           <View style={searchStyles.searchFields}>
-            <SearchTextInput
-              placeholderText={'Enter location'}
-              value={this.state.searchTerm}
-              onChangeHandler={this.searchTermSelected}
-              onSubmitHandler={this.fetchTriathlons}/>
-            <SearchTextInput
-              placeholderText={'Enter radius (MI)'}
-              value={this.state.searchRadius}
-              onChangeHandler={this.searchRadiusSelected}
-              onSubmitHandler={this.fetchTriathlons}/>
+            <View style={{flex: 1, marginRight: 5}}>
+              <SearchTextInput
+                placeholderText={'Enter location'}
+                value={this.state.searchTerm}
+                onChangeHandler={this.searchTermSelected}
+                onSubmitHandler={this.fetchTriathlons}/>
+            </View>
+            <View style={{flex: 1, marginLeft: 5}}>
+              <SearchTextInput
+                placeholderText={'Enter radius (Mi)'}
+                value={this.state.searchRadius}
+                onChangeHandler={this.searchRadiusSelected}
+                onSubmitHandler={this.fetchTriathlons}/>
+            </View>
           </View>
           <View style={searchStyles.dateRow}>
-            <DateSelector date={this.state.startDate} dateSelected={this.startDateSelected} label={'START DATE'}/>
-            <DateSelector date={this.state.endDate} dateSelected={this.endDateSelected} label={'END DATE'}/>
+            <View style={{flex: 1, marginRight: 5}}>
+              <DateSelector date={this.state.startDate} dateSelected={this.startDateSelected} label={'START DATE'}/>
+            </View>
+            <View style={{flex: 1, marginLeft: 5}}>
+              <DateSelector date={this.state.endDate} dateSelected={this.endDateSelected} label={'END DATE'}/>
+            </View>
           </View>
         </View>
 
@@ -105,8 +113,8 @@ export default class SearchView extends Component {
 
 searchStyles = StyleSheet.create({
   searchBar: {
-    height: 110,
-    backgroundColor: "#2A4057"
+    height: 130,
+    backgroundColor: "#2A4057",
   },
   emptyState: {
     marginTop: 30,
@@ -120,8 +128,8 @@ searchStyles = StyleSheet.create({
   searchFields: {
     flex: 1,
     flexDirection: 'row',
-    paddingVertical: 15,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    marginTop: 35
   },
   searchTerm: {
     flex: 1,
@@ -129,7 +137,7 @@ searchStyles = StyleSheet.create({
   dateRow: {
     flex: 1,
     flexDirection: 'row',
-    paddingVertical: 15,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    marginTop: 20
   },
 })

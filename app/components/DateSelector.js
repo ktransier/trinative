@@ -16,8 +16,6 @@ export default class DateSelector extends Component {
         backgroundColor: '#354F6A',
         borderRadius: 5,
         height: 30,
-        marginTop: 30,
-        marginRight: 10,
         alignItems: 'flex-start',
         paddingHorizontal: 10
       },
@@ -30,7 +28,6 @@ export default class DateSelector extends Component {
 
   render() {
     return (
-      <View style={dateSelectorStyles.container}>
         <DatePicker
           date={this.props.date}
           mode='date'
@@ -42,13 +39,6 @@ export default class DateSelector extends Component {
           customStyles={this.customStyles()}
           onDateChange={(date) => {this.props.dateSelected(date)}}
         />
-      </View>
     )
   }
 }
-
-dateSelectorStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
